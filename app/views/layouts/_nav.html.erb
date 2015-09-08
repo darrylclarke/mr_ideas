@@ -1,0 +1,35 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div>
+      <div class="navbar-header">
+        <%= link_to "Mr. Ideas", root_path, class: "navbar-brand" %>
+        <ul class="nav navbar-nav">
+          <!--<li><a href="#">Link</a></li>-->
+          <li><%#= link_to "All Questions", questions_path %></li>
+          <li><%#= link_to "New Question", new_question_path %></li>
+        </ul>
+      </div>
+        
+      <ul class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+          <li><%= link_to edit_users_path do %>
+            Hello <%= current_user.first_name %>
+            <% end %>
+          </li>
+          <li><%= link_to "Sign out", sessions_path, method: :delete %></li>
+          <li><%= link_to "New Idea", new_idea_path, class: "btn btn-small btn-primary white-text" %></li>
+        <% else %>
+          <li><%= link_to "Sign in", new_session_path %></li>
+          <li><%= link_to "Sign up", new_user_path %></li>
+        <% end %>
+      </ul>
+        
+    </div>
+    <% if user_signed_in? %>
+      <div class="nav navbar-nav navbar-right">
+         <%#= link_to "New Idea", new_idea_path, class: "btn btn-small white-text" %>
+      </div>
+    <% end %>  
+  </div>
+</nav>
+	  

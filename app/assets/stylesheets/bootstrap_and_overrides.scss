@@ -1,0 +1,34 @@
+@import "font-awesome";  
+@import "bootstrap";
+
+.big-icon {  
+	font-size: 25px;	  
+}
+
+.idea-box {
+	width : 100%;
+}
+
+.idea-name {
+	font-weight: bold
+}
+
+.idea-body {
+	font-weight: normal
+}
+
+.idea-footer-left {
+	text-align: left;
+	width : 60%;
+	float : left;
+}
+
+.idea-footer-right {
+	text-align: right;
+	width : 40%;
+	float : right;
+}
+
+.white-text {
+	color : white !important;
+}

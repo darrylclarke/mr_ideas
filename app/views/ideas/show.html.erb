@@ -1,0 +1,69 @@
+<!----------------------------------------------------------------------------->
+<h1> Idea Details </h1>
+<p class="idea-name"> <%= @idea.name %> </p>
+<p class="idea-body"> <%= @idea.body %> </p>
+<p>Created by: <%= @idea.user_name %> on <%= formatted_date(@idea.created_at) %></p> 
+
+<% if can? :edit, @idea %>
+<%= link_to "Edit", edit_idea_path( @idea ), class: "btn btn-info" %>
+<% end %>
+<% if can? :destroy, @idea %>
+<%= link_to "Delete", idea_path( @idea ), class: "btn btn-danger", method: :delete, data: {confirm: "Are you sure you want to delete this post?"} %>
+<% end %>
+	
+	
+<!----------------------------------------------------------------------------->
+<h2>Like:</h2>
+<% if user_signed_in? && !@idea.created_by?( current_user) %>
+	<!--idea_likes_path	POST /ideas/:idea_id/likes(.:format)	likes#create-->
+	<% if current_user.has_liked_idea?( @idea )  %>
+		
+		<%= link_to fa_icon("thumbs-up"), 
+					idea_like_path( @idea, @idea.like_for(current_user) ), 
+					class: "big-icon",
+					title: "Un-Like",
+					method: :delete 
+					%>	
+					
+	<% else %>
+		
+		<%= link_to fa_icon("thumbs-o-up"), 
+					idea_likes_path( @idea ), 
+					class: "big-icon",
+					title: "Like",
+					method: :post 	
+					%>
+					
+	<% end %>
+<% end %>
+			
+( <%= @idea.likes.count %> )
+	
+<!----------------------------------------------------------------------------->
+<h2>Members:</h2>
+<% @idea.memberships.each do |m| %>
+	<p><%= m.user_name %></p>
+<% end %>
+	
+
+<!----------------------------------------------------------------------------->
+<h2>Comments:</h2>
+<div class = "well">
+	<% if user_signed_in? %>
+		<h3>Add Comment</h3>
+		<%= form_for [@idea, Comment.new] do |f| %>
+			<%#= f.text_area :body, placeholder: "Add comment here..." %>
+			<%= f.text_area :body, class: "form-control", size: "200x2", placeholder: "Add comment here..."%>
+			<%= f.submit "Comment" %>
+		<% end %>
+	<% end %>
+	
+	<% @idea.ordered_comments.each do |com| %>
+	<div class="well">
+		<p><%= com.body %></p>
+		<p>Created by: <%= com.user_name %> on <%= formatted_date(com.created_at) %></p> 
+	</div>
+	<% end %>
+	
+</div>
+	
