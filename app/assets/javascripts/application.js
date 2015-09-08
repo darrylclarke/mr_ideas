@@ -18,6 +18,12 @@
 
 $(document).ready(function() {
 
+  $(".slide-box").slideUp(0);
+  
+  $(".new-idea-button").onClick( function(e) { e.preventDefault();  $(".slide-box").slideDown();  });
+  $(".close-slider").onClick( function(e) {  $(".slide-box").slideUp(0);  });
+  $(".cancel-slider").onClick( function(e) {  $(".slide-box").slideUp(0);  });
+  
   // Example Javascript below...
   //$(".disabled.cant-up")  .on('click', function(e) {alert('You have already voted up.'  ); e.preventDefault();});
   //$(".disabled.cant-down").on('click', function(e) {alert('You have already voted down.'); e.preventDefault();});

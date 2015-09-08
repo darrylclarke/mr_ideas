@@ -17,6 +17,7 @@ class IdeasController < ApplicationController
       # @ideas = current_user.favourite_ideas.order(:created_at)
     # else
       @ideas = Idea.all.order(:created_at).reverse
+      @idea  = Idea.new
     # end
   end
   

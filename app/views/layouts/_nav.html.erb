@@ -17,7 +17,7 @@
             <% end %>
           </li>
           <li><%= link_to "Sign out", sessions_path, method: :delete %></li>
-          <li><%= link_to "New Idea", new_idea_path, class: "btn btn-small btn-primary white-text" %></li>
+          <li><%= link_to "New Idea", root_path, class: "btn btn-small btn-primary white-text new-idea-button" %></li>
         <% else %>
           <li><%= link_to "Sign in", new_session_path %></li>
           <li><%= link_to "Sign up", new_user_path %></li>
@@ -27,7 +27,7 @@
     </div>
     <% if user_signed_in? %>
       <div class="nav navbar-nav navbar-right">
-         <%#= link_to "New Idea", new_idea_path, class: "btn btn-small white-text" %>
+         <%#= link_to "New Idea", root_path, class: "btn btn-small white-text " %>
       </div>
     <% end %>  
   </div>
